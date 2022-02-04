@@ -1,0 +1,4 @@
+---
+# defaults file for duckdns
+duckdns_domains:
+    - { domain: example, token: example-token}

@@ -1,0 +1,22 @@
+---
+# tasks file for duckdns
+
+  - name: Creates directory
+    file:
+      path: "{{item }}"
+      state: directory
+    loop:
+      - "/opt/duckdns"
+
+  - name: Generate duck.sh
+    template:
+       src: duck.sh.j2
+       dest: "/opt/duckdns/duck.sh"
+       mode: '700'
+
+  - name: Add cron job
+    cron:
+        name: "Duckdns"
+        user: "root"
+        minute: "*/5"
+        job: "/opt/duckdns/duck.sh"

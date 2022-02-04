@@ -1,0 +1,7 @@
+#!/bin/bash
+
+{% if (duckdns_domains is defined) and duckdns_domains %}
+{% for item in duckdns_domains %}
+echo url="https://www.duckdns.org/update?domains={{ item.domain }}&token={{ item.token }}&ip=" | curl -k -o /var/log/duckdns{{ item.domain }}.log -K -
+{% endfor %}
+{% endif %}
